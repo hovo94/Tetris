@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ContentModelStore">
+    <e p="$PROJECT_DIR$" t="IncludeRecursive">
+      <e p="Assembly-CSharp.csproj" t="IncludeRecursive" />
+      <e p="Assets/Scripts" t="Include">
+        <e p="BaseView" t="Include">
+          <e p="BasePopup.cs" t="Include" />
+          <e p="BaseScreen.cs" t="Include" />
+          <e p="IView.cs" t="Include" />
+        </e>
+        <e p="Config.cs" t="Include" />
+        <e p="DialogPopup.cs" t="Include" />
+        <e p="Enums.cs" t="Include" />
+        <e p="GameOverPopup.cs" t="Include" />
+        <e p="Grid" t="Include">
+          <e p="Block.cs" t="Include" />
+          <e p="BlockElement.cs" t="Include" />
+          <e p="GridElement.cs" t="Include" />
+        </e>
+        <e p="GridView.cs" t="Include" />
+        <e p="MainScreen.cs" t="Include" />
+        <e p="Managers" t="Include">
+          <e p="EventSystemManager.cs" t="Include" />
+          <e p="GameManager.cs" t="Include" />
+          <e p="GridManager.cs" t="Include" />
+          <e p="PopupsManager.cs" t="Include" />
+          <e p="ScreenManager.cs" t="Include" />
+        </e>
+        <e p="MatrixVector.cs" t="Include" />
+        <e p="Screens" t="Include">
+          <e p="PlayScreen.cs" t="Include" />
+        </e>
+        <e p="Screens.cs" t="Include" />
+        <e p="Singleton.cs" t="Include" />
+        <e p="YieldInstructions.cs" t="Include" />
+      </e>
+      <e p="Library" t="ExcludeRecursive" />
+      <e p="obj" t="ExcludeRecursive" />
+      <e p="packages" t="ExcludeRecursive" />
+      <e p="Temp" t="ExcludeRecursive">
+        <e p="bin" t="ExcludeRecursive" />
+      </e>
+      <e p="Tetris.sln" t="IncludeFlat" />
+    </e>
+    <e p="$USER_HOME$/Library/Caches/Rider2018.1/resharper-host/local/Transient/ReSharperHost/v12/SolutionCaches/_Tetris.-1260884519.00" t="ExcludeRecursive" />
+  </component>
+</project>
