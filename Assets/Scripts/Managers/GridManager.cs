@@ -39,6 +39,7 @@ public class GridManager : MonoBehaviour{
 		_grid = null;
 		_gridView.ClearGrid();
 		_gridView.DestroyGrid();
+		_onGridFull = null;
 		Score = 0;
 	}
 
