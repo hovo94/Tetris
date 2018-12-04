@@ -19,7 +19,6 @@ public class ScreenManager : MonoBehaviour {
 
 		_screens.PlayScreen.Initialize(leftArrowListener, rightArrowListener, downArrowListener,
 			rotateButttonArrowListener);
-		
 		_screens.PlayScreen.Show(beforeShow, afterShow);
 	}
 

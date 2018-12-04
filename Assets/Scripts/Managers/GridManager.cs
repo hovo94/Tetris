@@ -270,8 +270,6 @@ public class GridManager : MonoBehaviour {
 
 				CheckAndRemoveRows();
 				
-				//TODO possible check for position before createion
-
 				_currentBlock = CreateRandomBlock();
 
 				if (IsPositionsAvailable(_currentBlock.blockElementPositions, MatrixVector.down)) {
