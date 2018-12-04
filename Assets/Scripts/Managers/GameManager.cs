@@ -37,12 +37,11 @@ public class GameManager : Singleton<GameManager> {
 
 	private void InitializeManagers() {
 		_popupsManager.Initialize(_eventSystemManager);
-		_gridManager.Initialize(GameOver);
+		_gridManager.Initialize(GameOver,_screnManager.GridView);
 	}
 
 	private void Start() {
 		InitializeManagers();
 		_screnManager.ShowMainScreen(PlayButtonListener);
-		Debug.LogError("Use arrows to move in editor, and up arrow to ratate");
 	}
 }

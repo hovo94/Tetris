@@ -7,10 +7,9 @@ using Random = UnityEngine.Random;
 public class GridManager : MonoBehaviour {
 	
 	private readonly Vector2Int _startPosition = new Vector2Int(4, 1);
-
-	[SerializeField] private GridView _gridView;
 	
 	private int[,] _grid;
+	private GridView _gridView;
 	private Block _currentBlock;
 	
 	private int _columnsCount;
@@ -20,7 +19,8 @@ public class GridManager : MonoBehaviour {
 
 	private Action _onGridFull;
 
-	public void Initialize(Action onGridFull) {
+	public void Initialize(Action onGridFull, GridView gridView) {
+		_gridView = gridView;
 		_onGridFull += onGridFull;
 	}
 
@@ -286,25 +286,5 @@ public class GridManager : MonoBehaviour {
 
 			MoveBlock(MatrixVector.down);
 		}
-	}
-
-	private void Update() {
-		
-		if (Input.GetKeyDown(KeyCode.LeftArrow)) {
-			MoveBlock(MatrixVector.left);
-		}
-		
-		if (Input.GetKeyDown(KeyCode.RightArrow)) {
-			MoveBlock(MatrixVector.right);
-		}
-		
-		if (Input.GetKey(KeyCode.DownArrow)) {
-			MoveBlock(MatrixVector.down);
-		}
-		
-		if (Input.GetKeyDown(KeyCode.UpArrow)) {
-			RotateBlock();
-		}
-		
 	}
 }

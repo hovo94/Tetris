@@ -5,6 +5,10 @@ public class ScreenManager : MonoBehaviour {
 
 	[SerializeField] private Screens _screens;
 
+	public GridView GridView {
+		get { return _screens.PlayScreen.GridView; }
+	}
+
 	public void ShowMainScreen(Action playButtonListener, Action beforeShow = null, Action afterShow = null) {
 		_screens.MainScreen.Initialize(playButtonListener);
 		_screens.MainScreen.Show(beforeShow, afterShow);

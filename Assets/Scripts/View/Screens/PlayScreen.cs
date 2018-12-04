@@ -10,6 +10,12 @@ public class PlayScreen : BaseScreen {
 	[SerializeField] private Button _downArrow;
 	[SerializeField] private Button _rotate;
 
+	[Space] [SerializeField] private GridView _gridView;
+
+	public GridView GridView {
+		get { return _gridView; }
+	}
+
 	public void Initialize(Action leftArrowListener, Action rightArrowListener, Action downArrowListener,
 		Action rotateButttonArrowListener) {
 		_leftArrow.onClick.AddListener(() => { leftArrowListener(); });
