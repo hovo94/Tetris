@@ -3,21 +3,20 @@ using System.Collections;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class BaseScreen : MonoBehaviour , IView {
+public abstract class BaseScreen : BaseView {
 
 	[SerializeField] protected Canvas _canvas;
 	[SerializeField] protected CanvasGroup _canvasGroup;
 	[SerializeField] protected GraphicRaycaster _graphicRaycaster;
 
-	public virtual void Show(Action afterShow = null) {
-		StartCoroutine(show(afterShow));
+	protected abstract void RemoveAllButtonListeners();
+
+	public override void Hide(Action beforeHide, Action afterHide) {
+		RemoveAllButtonListeners();
+		base.Hide(beforeHide, afterHide);
 	}
 
-	public virtual void Hide(Action afterHide = null) {
-		StartCoroutine(hide(afterHide));
-	}
-
-	private IEnumerator show(Action afterShow) {
+	protected override IEnumerator show(Action afterShow) {
 
 		_canvas.enabled = true;
 		
@@ -37,7 +36,7 @@ public class BaseScreen : MonoBehaviour , IView {
 		}
 	}
 
-	private IEnumerator hide(Action afterHide) {
+	protected override IEnumerator hide(Action afterHide) {
 		_graphicRaycaster.enabled = false;
 		
 		float t = 1;

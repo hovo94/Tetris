@@ -1,10 +1,9 @@
-﻿
-using System;
+﻿using System;
 
 public interface IView {
-
-	void Show(Action afterShow = null);
-
-	void Hide(Action afterHide = null);
-
+    
+    void Show(Action beforeShow, Action afterShow);
+        
+    void Hide(Action beforeHide, Action afterHide);
+    
 }

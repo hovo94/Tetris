@@ -1,6 +1,6 @@
 ﻿using UnityEngine;
 
-public class GameManager : Singleton<GameManager>{
+public class GameManager : Singleton<GameManager> {
 	
 	[SerializeField] private GridManager _gridManager;
 	[SerializeField] private PopupsManager _popupsManager;
@@ -8,38 +8,40 @@ public class GameManager : Singleton<GameManager>{
 	[SerializeField] private ScreenManager _screnManager;
 	[SerializeField] private int _columnsCount;
 	[SerializeField] private int _rowsCount;
-
-	public EventSystemManager EventSystemManager {
-		get { return _eventSystemManager; }
-	}
-
+	
 	private void StartGame() {
-		_gridManager.Initialize(_columnsCount, _rowsCount,GameOver);
+		_gridManager.CreateGrid(_columnsCount, _rowsCount);
 		_gridManager.CreateAndMoveBlock();
 	}
-
+	
 	private void BackToMenu() {
-		_popupsManager.Hide();
 		_gridManager.DestroyGrid();
-		_screnManager.HideScreen(()=>{ _screnManager.ShowMainScreen(PlayButtonListener);});
+		_screnManager.HidePlayScreen();
+		_screnManager.ShowMainScreen(PlayButtonListener);
 	}
-
+	
+	private void RestartGame() {
+		_gridManager.ResetGrid();
+		_gridManager.CreateAndMoveBlock();
+	}
+	
 	private void GameOver() {
-		_popupsManager.ShowDialogPopup<GameOverPopup>(() => {
-			_popupsManager.Hide(() => {
-				_gridManager.ResetGrid();
-				_gridManager.CreateAndMoveBlock();
-			});
-		},BackToMenu,_gridManager.Score.ToString());
+		_popupsManager.ShowDialogPopup(RestartGame, BackToMenu, _gridManager.Score.ToString(), "Retry", "Go To Menu");
 	}
 
 	private void PlayButtonListener() {
-		_screnManager.HideScreen();
+		_screnManager.HideMainScreen();
 		_screnManager.ShowPlayScreen(_gridManager.MoveBlockLeft, _gridManager.MoveBlockRight,
-			_gridManager.MoveBlockDown, _gridManager.RotateBlock,StartGame);
+			_gridManager.MoveBlockDown, _gridManager.RotateBlock, null, StartGame);
+	}
+
+	private void InitializeManagers() {
+		_popupsManager.Initialize(_eventSystemManager);
+		_gridManager.Initialize(GameOver);
 	}
 
 	private void Start() {
+		InitializeManagers();
 		_screnManager.ShowMainScreen(PlayButtonListener);
 		Debug.LogError("Use arrows to move in editor, and up arrow to ratate");
 	}

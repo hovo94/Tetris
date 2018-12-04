@@ -2,29 +2,11 @@
 using System.Collections;
 using UnityEngine;
 
-public abstract class BasePopup : MonoBehaviour, IView {
+public abstract class BasePopup : BaseView {
 
     [SerializeField] private bool _destroyAfterHide = true;
-
     
-    public abstract void Initialize(Action onAccept, Action onDecline, string message);
-
-    public virtual void Show(Action afteShow = null) {
-        StartCoroutine(show(afteShow));
-    }
-
-    public virtual void Hide(Action afterHide = null) {
-
-        afterHide += () => {
-            if (_destroyAfterHide) {
-                Destroy(gameObject);
-            }
-        };
-
-        StartCoroutine(hide(afterHide));
-    }
-
-    private IEnumerator show(Action afterHide = null) {
+    protected override IEnumerator show(Action afterHide) {
         float t = 0;
 
         while (t < 1) {
@@ -40,7 +22,7 @@ public abstract class BasePopup : MonoBehaviour, IView {
         }
     }
 
-    private IEnumerator hide(Action afterHide = null) {
+    protected override IEnumerator hide(Action afterHide) {
         float t = 0;
 
         while (t < 1) {
@@ -53,6 +35,10 @@ public abstract class BasePopup : MonoBehaviour, IView {
 
         if (afterHide != null) {
             afterHide();
+        }
+        
+        if (_destroyAfterHide) {
+            Destroy(gameObject);
         }
     }
 }

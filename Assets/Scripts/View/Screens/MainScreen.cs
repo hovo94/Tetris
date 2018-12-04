@@ -11,8 +11,7 @@ public class MainScreen : BaseScreen {
 		_playButton.onClick.AddListener(() => { playButtonListener(); });
 	}
 
-	public override void Hide(Action afterHide = null) {
+	protected override void RemoveAllButtonListeners() {
 		_playButton.onClick.RemoveAllListeners();
-		base.Hide(afterHide);
 	}
 }

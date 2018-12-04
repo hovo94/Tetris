@@ -5,34 +5,25 @@ public class ScreenManager : MonoBehaviour {
 
 	[SerializeField] private Screens _screens;
 
-	private BaseScreen _currentScreen;
-
-	public void ShowMainScreen(Action playButtonListener, Action afterShow = null) {
-		GameManager.Instance.EventSystemManager.TurnOff();
-		afterShow += () => { GameManager.Instance.EventSystemManager.TurnOn();};
-		
+	public void ShowMainScreen(Action playButtonListener, Action beforeShow = null, Action afterShow = null) {
 		_screens.MainScreen.Initialize(playButtonListener);
-		_currentScreen = _screens.MainScreen;
-		_currentScreen.Show(afterShow);		
-
+		_screens.MainScreen.Show(beforeShow, afterShow);
 	}
 
 	public void ShowPlayScreen(Action leftArrowListener, Action rightArrowListener, Action downArrowListener,
-		Action rotateButttonArrowListener, Action afterShow = null) {
-		GameManager.Instance.EventSystemManager.TurnOff();
-		afterShow += () => { GameManager.Instance.EventSystemManager.TurnOn();};
+		Action rotateButttonArrowListener,Action beforeShow = null, Action afterShow = null) {
 
 		_screens.PlayScreen.Initialize(leftArrowListener, rightArrowListener, downArrowListener,
 			rotateButttonArrowListener);
 		
-		_currentScreen = _screens.PlayScreen;
-		_screens.PlayScreen.Show(afterShow);		
+		_screens.PlayScreen.Show(beforeShow, afterShow);
 	}
 
-	public void HideScreen(Action afterHide = null) {
-		GameManager.Instance.EventSystemManager.TurnOff();
-		afterHide += () => { GameManager.Instance.EventSystemManager.TurnOn();};
-		
-		_currentScreen.Hide(afterHide);
+	public void HidePlayScreen(Action beforeHide = null, Action afterHide = null) {
+		_screens.PlayScreen.Hide(beforeHide, afterHide);
+	}
+
+	public void HideMainScreen(Action beforeHide = null, Action afterHide = null) {
+		_screens.MainScreen.Hide(beforeHide,afterHide);
 	}
 }

@@ -18,4 +18,10 @@ public class PlayScreen : BaseScreen {
 		_rotate.onClick.AddListener(() => { rotateButttonArrowListener(); });
 	}
 
+	protected override void RemoveAllButtonListeners() {
+		_leftArrow.onClick.RemoveAllListeners();
+		_rightArrow.onClick.RemoveAllListeners();
+		_downArrow.onClick.RemoveAllListeners();
+		_rotate.onClick.RemoveAllListeners();
+	}
 }

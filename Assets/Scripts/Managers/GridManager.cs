@@ -4,7 +4,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using Random = UnityEngine.Random;
 
-public class GridManager : MonoBehaviour{
+public class GridManager : MonoBehaviour {
 	
 	private readonly Vector2Int _startPosition = new Vector2Int(4, 1);
 
@@ -12,7 +12,7 @@ public class GridManager : MonoBehaviour{
 	
 	private int[,] _grid;
 	private Block _currentBlock;
-
+	
 	private int _columnsCount;
 	private int _rowsCount;
 	
@@ -20,12 +20,15 @@ public class GridManager : MonoBehaviour{
 
 	private Action _onGridFull;
 
-	public void Initialize(int columnsCount, int rowsCount, Action onGridFull) {
+	public void Initialize(Action onGridFull) {
+		_onGridFull += onGridFull;
+	}
+
+	public void CreateGrid(int columnsCount, int rowsCount) {
 		_grid = new int[columnsCount, rowsCount];
 		_gridView.CreateGridView(columnsCount, rowsCount);
 		_columnsCount = columnsCount;
 		_rowsCount = rowsCount;
-		_onGridFull += onGridFull;
 	}
 	
 	public void CreateAndMoveBlock() {
@@ -39,7 +42,6 @@ public class GridManager : MonoBehaviour{
 		_grid = null;
 		_gridView.ClearGrid();
 		_gridView.DestroyGrid();
-		_onGridFull = null;
 		Score = 0;
 	}
 
@@ -267,6 +269,8 @@ public class GridManager : MonoBehaviour{
 			if (!IsPositionsAvailable(_currentBlock.blockElementPositions, MatrixVector.down)) {
 
 				CheckAndRemoveRows();
+				
+				//TODO possible check for position before createion
 
 				_currentBlock = CreateRandomBlock();
 

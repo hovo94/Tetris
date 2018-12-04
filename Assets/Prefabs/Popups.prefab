@@ -91,10 +91,9 @@ MonoBehaviour:
   m_GameObject: {fileID: 1008889323435404}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 7ab600bf8757b472c905a95fe50d400e, type: 3}
+  m_Script: {fileID: 11500000, guid: 334f1191183984fbc84d95f72c0cba41, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _dontDestroyOnLoad: 1
   _containter: {fileID: 224936027443837628}
   _backdrop: {fileID: 114594074774184740}
 --- !u!114 &114194549226594124
@@ -162,7 +161,7 @@ Canvas:
   m_OverrideSorting: 0
   m_OverridePixelPerfect: 0
   m_SortingBucketNormalizedSize: 0
-  m_AdditionalShaderChannelsFlag: 25
+  m_AdditionalShaderChannelsFlag: 1
   m_SortingLayerID: 0
   m_SortingOrder: 3
   m_TargetDisplay: 0
